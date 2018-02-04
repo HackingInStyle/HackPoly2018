@@ -42,6 +42,13 @@ public class MainActivity extends AppCompatActivity {
 //
 //        Log.i("stylo", String.valueOf(stylo.getAuthorizationScore(authAttempt)));
 
+        RawData data = new RawData();
+        data.addPoint(0.0137254912);
+        data.addPoint(0.017647059634);
+        data.addPoint(0.017647059634);
+
+        Log.d("std", String.valueOf(data.getStdDev()));
+
 
 
 

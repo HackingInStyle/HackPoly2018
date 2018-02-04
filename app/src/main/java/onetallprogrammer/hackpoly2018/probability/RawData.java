@@ -15,7 +15,7 @@ public class RawData {
         data = new ArrayList<Double>();
     }
 
-    public List<Double> getData() {
+    public ArrayList<Double> getData() {
         return data;
     }
 
