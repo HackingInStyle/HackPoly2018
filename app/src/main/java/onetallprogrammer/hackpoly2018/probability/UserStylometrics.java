@@ -23,7 +23,11 @@ public class UserStylometrics {
         if(timeInBetweenKeyPressMeans.size() == authProfile.size()) {
 
             for (int i = 0; i < timeInBetweenKeyPressMeans.size(); i++) {
+                if(!(timeInBetweenKeyPressMeans.get(i) > 0) || !(timeInBetweenKeyPressStdDevs.get(i) > 0))
+                    return 0.0;
+
                 NormalDistribution distribution = new NormalDistribution(timeInBetweenKeyPressMeans.get(i), timeInBetweenKeyPressStdDevs.get(i));
+                System.out.println(timeInBetweenKeyPressMeans.get(i) + " " + timeInBetweenKeyPressStdDevs.get(i));
                 timeInBetweenScore += Scorer.getScore(distribution, authProfile.get(i)) / timeInBetweenKeyPressMeans.size();
             }
         }

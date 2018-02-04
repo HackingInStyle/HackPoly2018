@@ -10,10 +10,16 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import onetallprogrammer.hackpoly2018.probability.RawData;
-import onetallprogrammer.hackpoly2018.probability.Scorer;
 import onetallprogrammer.hackpoly2018.probability.UserStylometrics;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     int currPassIdx = 0;
     double authscore = 100.0;
     double authscoreTimeBetween = 100.0;
+    File joeyUser;
 
     TextView outputView;
 
@@ -56,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
 //        ArrayList<Double> means = new ArrayList<>();
 //        ArrayList<Double> stdDevs = new ArrayList<>();
 //        ArrayList<Double> authAttempt = new ArrayList<>();
@@ -69,14 +77,6 @@ public class MainActivity extends AppCompatActivity {
 //        UserStylometrics stylo = new UserStylometrics(means, stdDevs, 4);
 //
 //        Log.i("stylo", String.valueOf(stylo.getAuthorizationScore(authAttempt)));
-
-        RawData data = new RawData();
-        data.addPoint(0.0137254912);
-        data.addPoint(0.017647059634);
-        data.addPoint(0.017647059634);
-
-        Log.d("std", String.valueOf(data.getStdDev()));
-
 
         for(int i = 0; i < passwordLength; i++) {
             pressSizeRawData[i] = new RawData();
@@ -181,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
         currTimeBetweenKeys[currPassIdx] = timeBetweenKeys;
         currPassIdx++;
         if(currPassIdx == passwordLength){
+
             checkPassword();
             reset();
         }
@@ -210,6 +211,7 @@ public class MainActivity extends AppCompatActivity {
             if(password[i] != currPassword[i]) {
                 reset();
                 outputView.setBackgroundColor(Color.RED);
+                outputView.setText("PASSWORD INCORRECT");
                 return;
             }
         }
@@ -224,9 +226,15 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("Auth Score Time Between: " + authscoreTimeBetween);
             System.out.println("Auth Score Pressed Down: " + authscore);
         }
-        if(authscoreTimeBetween > 0.15 && authscore > 0.30) {
+        if(authscoreTimeBetween > 0.15 && authscore > 0.25) {
             System.out.println("IS TRUE\n\n");
-            outputView.setBackgroundColor(Color.GREEN);
+            if (pressSizeRawData[0].getSize() >= 3) {
+                outputView.setBackgroundColor(Color.GREEN);
+                outputView.setText("Access Granted");
+            } else {
+                outputView.setBackgroundColor(Color.CYAN);
+                outputView.setText("Training...");
+            }
             for (int i = 0; i < passwordLength; i++) {
                 pressSizeRawData[i].addPoint(((double) currPressSizeData[i]));
                 timePressedDownRawData[i].addPoint((double) currTimePressedDown[i]);
@@ -234,6 +242,7 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
             outputView.setBackgroundColor(Color.RED);
+            outputView.setText("FAILED");
             reset();
             return;
         }
@@ -281,4 +290,5 @@ public class MainActivity extends AppCompatActivity {
     private double getAuthScore(UserStylometrics userStylometrics, ArrayList<Double> currInput){
         return userStylometrics.getAuthorizationScore(currInput);
     }
+
 }
