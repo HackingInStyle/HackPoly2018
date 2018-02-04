@@ -47,6 +47,7 @@ public class RawData {
 
         for(int i = 0; i < data.size(); i++) {
             sum += data.get(i);
+//            System.out.println("from sum: " + data.get(i));
         }
 
         return sum;

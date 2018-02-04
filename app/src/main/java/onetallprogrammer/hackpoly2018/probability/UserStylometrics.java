@@ -20,7 +20,6 @@ public class UserStylometrics {
 
     public double getAuthorizationScore(ArrayList<Double> authProfile) {
         double timeInBetweenScore = 0.0;
-
         if(timeInBetweenKeyPressMeans.size() == authProfile.size()) {
 
             for (int i = 0; i < timeInBetweenKeyPressMeans.size(); i++) {
