@@ -1,7 +1,5 @@
 package onetallprogrammer.hackpoly2018.probability;
 
-import android.util.Log;
-
 import org.junit.Before;
 import org.junit.Test;
 

@@ -8,7 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 
+import java.util.ArrayList;
+
 import onetallprogrammer.hackpoly2018.probability.RawData;
+import onetallprogrammer.hackpoly2018.probability.Scorer;
+import onetallprogrammer.hackpoly2018.probability.UserStylometrics;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,13 +28,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RawData data = new RawData();
+//        ArrayList<Double> means = new ArrayList<>();
+//        ArrayList<Double> stdDevs = new ArrayList<>();
+//        ArrayList<Double> authAttempt = new ArrayList<>();
+//
+//        for(int i = 1; i < 5; i++){
+//            means.add((double) i);
+//            authAttempt.add((double) i - 0.1);
+//            stdDevs.add((double) i / 1.0);
+//        }
+//
+//        UserStylometrics stylo = new UserStylometrics(means, stdDevs, 4);
+//
+//        Log.i("stylo", String.valueOf(stylo.getAuthorizationScore(authAttempt)));
 
-        data.addPoint(1.0);
-        data.addPoint(2.0);
-        data.addPoint(3.0);
 
-        Log.i("mean", String.valueOf(data.getMean()));
+
 
         GridLayout gridLayout = (GridLayout)findViewById(R.id.gridLayout);
         for(int i=0; i < 10; i++) {

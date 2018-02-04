@@ -9,7 +9,7 @@ import java.util.List;
 
 public class RawData {
 
-    List<Double> data;
+    ArrayList<Double> data;
 
     public RawData(){
         data = new ArrayList<Double>();
@@ -19,12 +19,20 @@ public class RawData {
         return data;
     }
 
-    public void setData(List<Double> data) {
+    public void setData(ArrayList<Double> data) {
         this.data = data;
+    }
+
+    public Double getPoint(int index){
+        return data.get(index);
     }
 
     public void addPoint(Double point){
         data.add(point);
+    }
+
+    public int getSize(){
+        return data.size();
     }
 
     public Double getMean(){
