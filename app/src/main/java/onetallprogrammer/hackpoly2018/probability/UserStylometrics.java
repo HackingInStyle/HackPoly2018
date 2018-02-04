@@ -13,7 +13,7 @@ public class UserStylometrics {
     private ArrayList<Double> timeInBetweenKeyPressMeans = new ArrayList<>();
     private ArrayList<Double> timeInBetweenKeyPressStdDevs = new ArrayList<>();
 
-    public UserStylometrics(ArrayList<Double> timeInBetweenKeyPressMeans, ArrayList<Double> pressSizeStdDevs) {
+    public UserStylometrics(ArrayList<Double> timeInBetweenKeyPressMeans, ArrayList<Double> timeInBetweenKeyPressStdDevs) {
         this.timeInBetweenKeyPressMeans = timeInBetweenKeyPressMeans;
         this.timeInBetweenKeyPressStdDevs = timeInBetweenKeyPressStdDevs;
     }
