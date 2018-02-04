@@ -26,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
         RawData data = new RawData();
 
-        data.addPoint(1);
-        data.addPoint(2);
-        data.addPoint(3);
+        data.addPoint(1.0);
+        data.addPoint(2.0);
+        data.addPoint(3.0);
 
         Log.i("mean", String.valueOf(data.getMean()));
 

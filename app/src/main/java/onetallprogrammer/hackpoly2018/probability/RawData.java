@@ -9,33 +9,33 @@ import java.util.List;
 
 public class RawData {
 
-    List<Float> data;
+    List<Double> data;
 
     public RawData(){
-        data = new ArrayList<Float>();
+        data = new ArrayList<Double>();
     }
 
-    public List<Float> getData() {
+    public List<Double> getData() {
         return data;
     }
 
-    public void setData(List<Float> data) {
+    public void setData(List<Double> data) {
         this.data = data;
     }
 
-    public void addPoint(float point){
+    public void addPoint(Double point){
         data.add(point);
     }
 
-    public float getMean(){
+    public Double getMean(){
 
-        if(data.isEmpty()) return 0;
+        if(data.isEmpty()) return 0.0;
 
         return getSum() / data.size();
     }
 
-    public float getSum(){
-        float sum = 0;
+    public Double getSum(){
+        Double sum = 0.0;
 
         for(int i = 0; i < data.size(); i++) {
             sum += data.get(i);
@@ -44,15 +44,15 @@ public class RawData {
         return sum;
     }
 
-    public float getStdDev(){
-        float mean = getMean();
+    public Double getStdDev(){
+        Double mean = getMean();
         Double sumOfSquares = 0.0;
 
         for(int i = 0; i < data.size(); i++){
             sumOfSquares += Math.pow(data.get(i) - mean, 2);
         }
 
-        return (float) Math.sqrt(sumOfSquares / data.size());
+        return Math.sqrt(sumOfSquares / data.size());
     }
 
 }
